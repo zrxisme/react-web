@@ -1,16 +1,15 @@
 import React,{Component} from 'react'
 import PropTypes from "prop-types";
 import {
-  Layout, Menu, Breadcrumb, Icon,
+  Layout,
 } from 'antd';
 import SideMenu from './components/sideMenu/sideMenu'
 import HeaderBar from './components/headerBar/headerBar'
 import RouterHistory from './components/routerHistory/routerHistory'
-import  routes from '../../routes'
+import  menuList from '../../routes'
 const {
   Header, Content, Footer, Sider,
 } = Layout;
-const SubMenu = Menu.SubMenu;
 class Main extends Component{
      state = {
     collapsed: false,
@@ -32,15 +31,15 @@ class Main extends Component{
     render(){
         let {children,routes} = this.props
         return (
-           <Layout style={{ minHeight: '100vh' }}>
+           <Layout style={{ minHeight: '100vh'}}>
         <Sider
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
         >
-           <SideMenu menuList={routes} changeRouter={this.changeRouter.bind(this)}></SideMenu>
+           <SideMenu  menuList={menuList} changeRouter={this.changeRouter.bind(this)}></SideMenu>
         </Sider>
-        <Layout>
+        <Layout  >
            <Header style={{ background: '#fff', padding: 0 }}>
              <HeaderBar routes={routes} onToggle={this.toggle.bind(this)} collapsed={this.state.collapsed} ></HeaderBar>
           </Header>

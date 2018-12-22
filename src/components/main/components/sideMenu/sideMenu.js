@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { routerShow } from '../../../../util/libs'
 import store from '../../../../store'
 import './sideMenu.less'
-import { Menu, Icon} from 'antd';
+import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
 const storeData = store.getState().userData
 const {access} = storeData
@@ -13,17 +13,43 @@ class SideMenu extends Component {
     }
     componentDidMount() {
         let {menuList} = this.props
-        let showedMenuList = this.getMenuList(menuList)
-        this.setState({
-            showedMenuList
-        })
+        let haveChildren = false
+        menuList = menuList.filter((item) => {
+            if (item.path === '/') {
+                return item
+            }
+        })[0]  //过滤路由，只在菜单栏显示跟路由的菜单
+
+        if (routerShow(menuList, access)) {     
+            if (menuList.childRoutes && menuList.childRoutes.length > 0) {
+                menuList.childRoutes.forEach(children => {
+                    if (children.path && routerShow(children, access)) {
+                        haveChildren = true
+                    }
+                })
+                let showedMenuList = []
+                if (haveChildren) {
+                    showedMenuList = this.getMenuList(menuList.childRoutes)
+                } else {
+                    showedMenuList = (
+                        <Menu.Item key={`menu${menuList.path}`} >
+                            {<span><Icon type={menuList.meta.icon || 'team'} /><span>{menuList.meta.title || '无标题'}</span></span>}
+                        </Menu.Item>
+                    )
+                }
+                this.setState({
+                    showedMenuList
+                })
+            }
+        }
+
     }
     getMenuList(menuList) {   //递归获取子菜单
-        return menuList.map((item,index) => {
-               if(!item.path){
-                   return ''
-               }
-              let haveChildren = false
+        return menuList.map((item, index) => {
+            if (!item.path || !routerShow(item, access)) {
+                return ''
+            }
+            let haveChildren = false
             if (routerShow(item, access)) {
                 if (item.childRoutes && item.childRoutes.length > 0) {
                     item.childRoutes.forEach(children => {
@@ -32,11 +58,13 @@ class SideMenu extends Component {
                         }
                     })
                 }
-                if (haveChildren&&item.path==='/') {
-                    return item.childRoutes.map(itemChildren => {
+                if (haveChildren) {
+                    return (
+                        <SubMenu key={`menu${item.path}`} title={<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title}</span></span>}>
+                            {item.childRoutes.map(itemChildren => {
                                 if (routerShow(itemChildren, access)) {
                                     if (itemChildren.childRoutes && itemChildren.childRoutes.length > 0) {
-                                       return this.getMenuList(itemChildren)
+                                        return this.getMenuList(itemChildren)
                                     } else {
                                         return (
                                             <Menu.Item key={`menu${itemChildren.path}`}><Icon type={item.meta.icon || 'team'} />{itemChildren.meta.title || '无标题'}</Menu.Item>
@@ -45,9 +73,10 @@ class SideMenu extends Component {
                                 } else {
                                     return <></>
                                 }
-                            })
-                       
-                } else if (item.path==='/'){
+                            })}
+                        </SubMenu>
+                    )
+                } else {
                     return (
                         <Menu.Item key={`menu${item.path}`} >
                             {<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title || '无标题'}</span></span>}

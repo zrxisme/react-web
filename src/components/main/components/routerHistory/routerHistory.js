@@ -10,14 +10,14 @@ class RouterHistory extends Component {
     static contextTypes = {
         router:PropTypes.object.isRequired
     }
-    
-     componentDidMount(){
-           this.setState({
+        componentWillReceiveProps(props){
+             this.setState({
                routes:getRouteHistory()
-           }) 
+           })
         }
       changePage(e){
            const path = e.target.dataset.router
+           if(!path)return
            this.context.router.push(path)
       }  
     render() {

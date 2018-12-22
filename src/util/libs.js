@@ -31,20 +31,25 @@ export function routerShow(route, access) {
 }  //路由判断，通过路由显示菜单栏
 
 export function addRouterHistory(route) {
-     let historys = Cookies.get(ROUTER_HISTORY) 
-      let  routes = historys?JSON.parse(historys).routes : []
-    if (!routes.some(item => item.path === route.path)&&route.path!='/'&&!route.meta.hideInMenu) {
+    let historys = Cookies.get(ROUTER_HISTORY)
+    let routes = historys ? JSON.parse(historys).routes : []
+    if (!routes.some(item => item.path === route.path) && route.path !== '/' && !route.meta.hideInMenu) {
         routes.push(route)
-        Cookies.set(ROUTER_HISTORY, {routes}, { expires: config.cookieExpires || 1 })
+        Cookies.set(ROUTER_HISTORY, { routes }, { expires: config.cookieExpires || 1 })
     }
 }
 
 export function getRouteHistory() {
     let routes = Cookies.get(ROUTER_HISTORY)
-     routes = routes?JSON.parse(routes).routes : []
+    routes = routes ? JSON.parse(routes).routes : []
     if (routes) return routes
     else return []
-}//获取保存的token 
+}//获取保存的路由
+
+export function clearMessage() {
+    Cookies.set(ROUTER_HISTORY, {}, { expires: 0 })
+    Cookies.set(LOGIN_TOKEN, '', { expires:0 })
+}//页面登出,清除token
 
 export function getToken() {
     const token = Cookies.get(LOGIN_TOKEN)

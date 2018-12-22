@@ -6,8 +6,17 @@ import Login from '../views/login/login'
 import ErrorPage from '../views/error/error'
 import Home from '../views/home/home'
 
-const routes = [{
-    path: "/",
+/**
+ *  meta: {
+      icon:'',  侧面菜单栏显示的图标
+      title: '' 侧面菜单栏显示的标题
+      hideInMenu: false, 是否显示菜单栏（注意只有在根路由下的子路由才有效！）
+      access: [''], 用户权限控制，不填默认所有用户均可访问
+    },
+ * 
+ */
+const routes = [{    
+    path: "/",     //侧面菜单栏的路由必须是根路由的子路由哦！
     name:'first-page',
     component: Main,
     meta: {
@@ -30,7 +39,7 @@ const routes = [{
     }
     }],
     onEnter: onRouteEnter
-}, {
+}, {                     //非跟路由的子路由不会再侧面菜单栏中显示哦
     path: "/about",
     name:'about-page',
     component: About,
