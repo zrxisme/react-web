@@ -47,25 +47,7 @@ class SideMenu extends Component {
                                 }
                             })
                        
-                }else if (haveChildren) {
-                    return (
-                        <SubMenu key={`menu${item.path}`} title={<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title}</span></span>}>
-                            {item.childRoutes.map(itemChildren => {
-                                if (routerShow(itemChildren, access)) {
-                                    if (itemChildren.childRoutes && itemChildren.childRoutes.length > 0) {
-                                       return this.getMenuList(itemChildren)
-                                    } else {
-                                        return (
-                                            <Menu.Item key={`menu${itemChildren.path}`}><Icon type={item.meta.icon || 'team'} />{itemChildren.meta.title || '无标题'}</Menu.Item>
-                                        )
-                                    }
-                                } else {
-                                    return <></>
-                                }
-                            })}
-                        </SubMenu>
-                    )
-                } else {
+                } else if (item.path==='/'){
                     return (
                         <Menu.Item key={`menu${item.path}`} >
                             {<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title || '无标题'}</span></span>}
