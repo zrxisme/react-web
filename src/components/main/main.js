@@ -4,6 +4,8 @@ import {
   Layout, Menu, Breadcrumb, Icon,
 } from 'antd';
 import SideMenu from './components/sideMenu/sideMenu'
+import HeaderBar from './components/headerBar/headerBar'
+import RouterHistory from './components/routerHistory/routerHistory'
 import  routes from '../../routes'
 const {
   Header, Content, Footer, Sider,
@@ -22,8 +24,13 @@ class Main extends Component{
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
   }
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
     render(){
-        let {children} = this.props
+        let {children,routes} = this.props
         return (
            <Layout style={{ minHeight: '100vh' }}>
         <Sider
@@ -34,12 +41,11 @@ class Main extends Component{
            <SideMenu menuList={routes} changeRouter={this.changeRouter.bind(this)}></SideMenu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
+           <Header style={{ background: '#fff', padding: 0 }}>
+             <HeaderBar routes={routes} onToggle={this.toggle.bind(this)} collapsed={this.state.collapsed} ></HeaderBar>
+          </Header>
           <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
+            <RouterHistory></RouterHistory>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
              {children}
             </div>

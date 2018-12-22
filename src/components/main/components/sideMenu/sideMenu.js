@@ -1,66 +1,97 @@
-import React,{Component} from 'react'
-import { routerShow} from '../../../../util/libs'
+import React, { Component } from 'react'
+import { routerShow } from '../../../../util/libs'
 import store from '../../../../store'
 import './sideMenu.less'
-import {
-  Layout, Menu, Breadcrumb, Icon,
-} from 'antd'; 
+import { Menu, Icon} from 'antd';
 const SubMenu = Menu.SubMenu;
 const storeData = store.getState().userData
 const {access} = storeData
-class SideMenu extends Component{
+class SideMenu extends Component {
     state = {
-        current:`menu${this.props.menuList[0].path}`
+        current: `menu${this.props.menuList[0].path}`,
+        showedMenuList: []
     }
-    
-    handleClick(e){
-    this.setState({
-      current: e.key,
-    });
-    const router = e.key.substr(4)
-    this.props.changeRouter(router)
-}//获取菜单点击事件
-
-    render(){
+    componentDidMount() {
         let {menuList} = this.props
-        let {current} = this.state
-        let haveChildren = false
-        return (
-  <div className="side-menu-wrapper">
-       <div className="logo" />
-    <Menu onClick={this.handleClick.bind(this)} theme="dark" defaultSelectedKeys={[current]} mode="inline" ref="menu">
-        {menuList.map(item=>{
-                if(routerShow(item,access)){
-                    if(item.children&&item.childRoutes.length>0){
-                        item.childRoutes.forEach(children=>{
-                           if(children.path&&routerShow(children,access)){
-                           haveChildren = true
-                          }
-                        })
-                    }
-                    if(haveChildren){
-                    return (
-                     <SubMenu key={`menu${item.name}`} title={<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title}</span></span>}>
-                     {item.childRoutes.filter(itemChildren=>{
-                         if(routerShow(itemChildren,access)){
-                           return (
-                              <Menu.Item key={`menuitem-${itemChildren.name}`}>{itemChildren.meta.title||'无标题'}</Menu.Item>
-                         )
-                         } 
-                     })}
-                     </SubMenu>
-                    )
-                    }else{
-                        return (
-                     <Menu.Item key={`menu${item.path}`} >
-                         {<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title||'无标题'}</span></span>}
-                     </Menu.Item>
-                    ) 
-                    }
+        let showedMenuList = this.getMenuList(menuList)
+        this.setState({
+            showedMenuList
+        })
+    }
+    getMenuList(menuList) {   //递归获取子菜单
+        return menuList.map((item,index) => {
+               if(!item.path){
+                   return ''
+               }
+              let haveChildren = false
+            if (routerShow(item, access)) {
+                if (item.childRoutes && item.childRoutes.length > 0) {
+                    item.childRoutes.forEach(children => {
+                        if (children.path && routerShow(children, access)) {
+                            haveChildren = true
+                        }
+                    })
                 }
-        })}
-    </Menu>
-  </div>
+                if (haveChildren&&item.path==='/') {
+                    return item.childRoutes.map(itemChildren => {
+                                if (routerShow(itemChildren, access)) {
+                                    if (itemChildren.childRoutes && itemChildren.childRoutes.length > 0) {
+                                       return this.getMenuList(itemChildren)
+                                    } else {
+                                        return (
+                                            <Menu.Item key={`menu${itemChildren.path}`}><Icon type={item.meta.icon || 'team'} />{itemChildren.meta.title || '无标题'}</Menu.Item>
+                                        )
+                                    }
+                                } else {
+                                    return <></>
+                                }
+                            })
+                       
+                }else if (haveChildren) {
+                    return (
+                        <SubMenu key={`menu${item.path}`} title={<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title}</span></span>}>
+                            {item.childRoutes.map(itemChildren => {
+                                if (routerShow(itemChildren, access)) {
+                                    if (itemChildren.childRoutes && itemChildren.childRoutes.length > 0) {
+                                       return this.getMenuList(itemChildren)
+                                    } else {
+                                        return (
+                                            <Menu.Item key={`menu${itemChildren.path}`}><Icon type={item.meta.icon || 'team'} />{itemChildren.meta.title || '无标题'}</Menu.Item>
+                                        )
+                                    }
+                                } else {
+                                    return <></>
+                                }
+                            })}
+                        </SubMenu>
+                    )
+                } else {
+                    return (
+                        <Menu.Item key={`menu${item.path}`} >
+                            {<span><Icon type={item.meta.icon || 'team'} /><span>{item.meta.title || '无标题'}</span></span>}
+                        </Menu.Item>
+                    )
+                }
+            }
+        })
+    }
+    handleClick(e) {
+        this.setState({
+            current: e.key,
+        });
+        const router = e.key.substr(4)
+        this.props.changeRouter(router)
+    }//获取菜单点击事件
+
+    render() {
+        let {current, showedMenuList} = this.state
+        return (
+            <div className="side-menu-wrapper">
+                <div className="logo" />
+                <Menu onClick={this.handleClick.bind(this)} theme="dark" defaultSelectedKeys={[current]} mode="inline" ref="menu">
+                    {showedMenuList}
+                </Menu>
+            </div>
         )
     }
 }

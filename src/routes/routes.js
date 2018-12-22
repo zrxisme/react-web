@@ -1,4 +1,4 @@
-import { canTurnTo, getToken } from '../util/libs'
+import { canTurnTo, getToken,addRouterHistory } from '../util/libs'
 import store from '../store'
 import Main from '../components/main/main'
 import About from '../views/about/about'
@@ -11,7 +11,7 @@ const routes = [{
     name:'first-page',
     component: Main,
     meta: {
-      icon:'user',  
+      icon:'home',  
       title: '首页',
       hideInMenu: false,
       access: ['student'],
@@ -73,7 +73,7 @@ const canChangeRouter = (route, access, callback, replace) => {
     }
 }
 function onRouteEnter(nextState, replace, callback) {
-    const route = nextState.routes[0]
+    const route = nextState.routes[nextState.routes.length-1].path?nextState.routes[nextState.routes.length-1]:nextState.routes[0]
     const storeData = store.getState().userData
     const {access, hasGetInfo} = storeData
     let token = getToken()
@@ -91,6 +91,7 @@ function onRouteEnter(nextState, replace, callback) {
             canChangeRouter(route, access, callback, replace)
         }
     }
+    addRouterHistory(route)
     callback()
 }
 

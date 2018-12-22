@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './login.less'
 import { login} from '../../actions'
 import { Card, Form, Icon, Input, Button } from 'antd';
+import PropTypes from "prop-types";
 const FormItem = Form.Item;
 class Login extends Component {
     constructor() {
@@ -15,6 +16,9 @@ class Login extends Component {
         }
         }
     }
+     static contextTypes = {
+            router: PropTypes.object.isRequired,
+        }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -22,6 +26,7 @@ class Login extends Component {
                 const {username,password} = values
                 if(username==='admin'&&password==='admin'){
                        this.props.loginClick({...values,token:'user_token'})
+                        this.context.router.push("/")
                 }
                
             }
