@@ -17,7 +17,7 @@ class User extends Component {
     render() {
         const {user} = this.props
         const menu = (
-            <Menu>
+            <Menu >
                 <Menu.Item key="0">
                     <span target="_blank" rel="noopener noreferrer" onClick={this.logout.bind(this)}>退出登录</span>
                 </Menu.Item>

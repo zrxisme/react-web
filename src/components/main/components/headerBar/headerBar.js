@@ -25,7 +25,7 @@ class HeaderBar extends Component {
                 onClick={onToggle}
             />
             <BreadPage routes={routes}></BreadPage>
-            <User user={user} />
+            <User className="user_container" user={user} />
              <LockScreen></LockScreen>
              <MessageTip count={mesCount} text={msgText}></MessageTip>
             </>
