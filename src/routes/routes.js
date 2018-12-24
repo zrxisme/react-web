@@ -7,6 +7,7 @@ import ErrorPage from '../views/error/error'
 import Home from '../views/home/home'
 import Person from '../views/personal'
 import MyMap from '../views/map'
+import MyExcel from '../views/excel'
 /**
  *  meta: {
       icon:'',  侧面菜单栏显示的图标
@@ -50,7 +51,18 @@ const routes = [{
                 hideInMenu: false,
                 access: ['student'],
             }
-        },{
+        }, {
+            path: "/excel",
+            name: 'excel-page',
+            component: MyExcel,
+            onEnter: onRouteEnter,
+            meta: {
+                icon: 'file',
+                title: 'excel表导入',
+                hideInMenu: false,
+                access: ['student'],
+            }
+        }, {
             path: "/map",
             name: 'map-page',
             component: MyMap,
@@ -63,7 +75,7 @@ const routes = [{
             }
         }],
     onEnter: onRouteEnter
-},{
+}, {
     path: "/login",
     name: 'login-page',
     component: Login,
