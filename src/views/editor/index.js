@@ -62,23 +62,6 @@ class MyEditor extends Component {
                         </Form.Item>
                         <Form.Item
                             {...formItemLayout}
-                            label="单选"
-                            hasFeedback
-                        >
-                            {getFieldDecorator('select', {
-                                rules: [
-                                    { required: true, message: 'Please select your country!' },
-                                ],
-                            })(
-                                <Select placeholder="Please select a country">
-                                    <Option value="新建内容">新建内容</Option>
-                                    <Option value="更新内容">更新内容</Option>
-                                </Select>
-                                )}
-                        </Form.Item>
-
-                        <Form.Item
-                            {...formItemLayout}
                             label="富文本"
                         >
                          <Expand editorState={editorState} editorContent={editorContent} onEditorChange={this.onEditorChange} onEditorStateChange={this.onEditorStateChange} />
