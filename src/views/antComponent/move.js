@@ -1,9 +1,8 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TweenOne, { TweenOneGroup } from 'rc-tween-one';
+import TweenOne from 'rc-tween-one';
 import ticker from 'rc-tween-one/lib/ticker';
-import { enquireScreen } from 'enquire-js';
 import PropTypes from 'prop-types';
 import './move.less'
 export default class MyMove extends React.Component {

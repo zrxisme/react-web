@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Divider, Tag, Upload, message, Button, Icon } from 'antd';
+import { Table, Upload, message, Button, Icon } from 'antd';
 import './index.less'
 import excel from '../../util/excel'
 import config from '../../config'
@@ -12,8 +12,6 @@ export default class MyExcel extends Component {
         progressPercent: 0,
         showProgress: false,
         showRemoveFile: false,
-        tableTitle: [],
-        file: null,
         newData: [],
         fileProps: {
             name: 'file',
@@ -58,7 +56,7 @@ export default class MyExcel extends Component {
             dataIndex: 'description'
         },
         {
-            title: '操作', dataIndex: '', key: 'x', render: () => <a href="javascript:;">删除</a>,
+            title: '操作', dataIndex: '', key: 'x', render: () => <span>删除</span>,
         }]
     }
     onChange(info) {
@@ -104,8 +102,7 @@ export default class MyExcel extends Component {
         reader.onload = e => {
             message.info('文件读取成功')
             const data = e.target.result
-            const { header, results } = excel.read(data, 'array')
-            const tableTitle = header.map(item => { return { title: item, key: item } })
+            const { results } = excel.read(data, 'array')
             let infos = []
             results.forEach((item, index) => {
                 infos.push({

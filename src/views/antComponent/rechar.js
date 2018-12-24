@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Surface, RadarChart, ScatterChart,PolarGrid,Radar,PolarRadiusAxis, XAxis, YAxis, ZAxis, CartesianGrid, Scatter, Tooltip, Legend, ReferenceArea, ReferenceLine, ReferenceDot } from 'recharts';
+import {RadarChart, ScatterChart,PolarGrid,Radar,PolarRadiusAxis, XAxis, YAxis, ZAxis, CartesianGrid, Scatter, Tooltip, Legend, ReferenceArea, ReferenceLine, ReferenceDot } from 'recharts';
 import { Row, Col } from 'antd'
 const data = [
   { subject: 'Math', A: 120, B: 110 },
@@ -8,14 +8,6 @@ const data = [
   { subject: 'Geography', A: 99, B: 100 },
   { subject: 'Physics', A: 85, B: 90 },
   { subject: 'History', A: 65, B: 85 },
-];
-const sectors = [
-    { cx: 250, cy: 250, startAngle: 0, endAngle: 60, innerRadius: 100, outerRadius: 200 },
-    { cx: 250, cy: 250, startAngle: 60, endAngle: 120, innerRadius: 100, outerRadius: 200 },
-    { cx: 250, cy: 250, startAngle: 120, endAngle: 180, innerRadius: 100, outerRadius: 200 },
-    { cx: 250, cy: 250, startAngle: 180, endAngle: 240, innerRadius: 100, outerRadius: 200 },
-    { cx: 250, cy: 250, startAngle: 240, endAngle: 300, innerRadius: 100, outerRadius: 200 },
-    { cx: 250, cy: 250, startAngle: 300, endAngle: 360, innerRadius: 100, outerRadius: 200 },
 ];
 const data01 = [
     { x: 100, y: 200, z: 200, errorY: [20, 30], errorX: 30 },
@@ -36,7 +28,6 @@ const data02 = [
 ];
 export default class ReChar extends Component {
     render() {
-        const arr = [0, 1, 2, 3, 5]
         return (
             <Row>
                 <Col span={10}>

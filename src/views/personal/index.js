@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Col, Row, Icon, Button, Modal, Form, Input, Upload } from 'antd';
 import "./index.less"
 export default class Person extends Component {
     constructor() {

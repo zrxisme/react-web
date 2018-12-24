@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import {
-    Row, Col
-} from 'antd';
 import MonacoEditor from 'react-monaco-editor';
 export default class MyCodeMirror extends Component {
     state = {

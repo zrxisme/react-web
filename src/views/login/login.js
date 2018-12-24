@@ -25,8 +25,9 @@ class Login extends Component {
             if (!err) {
                 const {username,password} = values
                 if(username==='admin'&&password==='admin'){
-                       this.props.loginClick({...values,token:'user_token'})
-                        this.context.router.push("/")
+                      let content = this.props.loginClick({...values,token:'user_token'})
+                      console.log(content,999)
+                       // this.context.router.push("/")
                 }
                
             }

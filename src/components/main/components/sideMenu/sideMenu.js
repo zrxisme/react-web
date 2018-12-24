@@ -98,7 +98,7 @@ class SideMenu extends Component {
             router = e.keyPath[0]
         }
         router = router.replace(/menu/g, '')
-         if(router.indexOf("/")!=0){
+         if(router.indexOf("/")!==0){
            router = "/" + router
          }
         this.props.changeRouter(router)
