@@ -1,11 +1,12 @@
-import { canTurnTo, getToken,addRouterHistory } from '../util/libs'
+import { canTurnTo, getToken, addRouterHistory } from '../util/libs'
 import store from '../store'
 import Main from '../components/main/main'
-import About from '../views/about/about'
+import MyEditor from '../views/editor'
 import Login from '../views/login/login'
 import ErrorPage from '../views/error/error'
 import Home from '../views/home/home'
-
+import Person from '../views/personal'
+import MyMap from '../views/map'
 /**
  *  meta: {
       icon:'',  侧面菜单栏显示的图标
@@ -15,60 +16,72 @@ import Home from '../views/home/home'
     },
  * 
  */
-const routes = [{    
+const routes = [{
     path: "/",     //侧面菜单栏的路由必须是根路由的子路由哦！
-    name:'first-page',
+    name: 'first-page',
     component: Main,
     meta: {
-      icon:'home',  
-      title: '首页',
-      hideInMenu: false,
-      access: ['student'],
+        icon: 'home',
+        title: '首页',
+        hideInMenu: false,
+        access: ['student'],
     },
     indexRoute: { component: Home },
-    childRoutes: [{
-    path: "/about",
-    name:'about-page',
-    component: About,
-    onEnter: onRouteEnter,
-     meta: {
-       icon:'team',   
-      title: '关于',
-      hideInMenu: false,
-      access: ['student'],
-    }
-    }],
+    childRoutes: [
+        {
+            path: "/person",
+            name: 'person-page',
+            component: Person,
+            onEnter: onRouteEnter,
+            meta: {
+                icon: 'team',
+                title: '个人中心',
+                hideInMenu: false,
+                access: ['student'],
+            }
+        }, {
+            path: "/editor",
+            name: 'editor-page',
+            component: MyEditor,
+            onEnter: onRouteEnter,
+            meta: {
+                icon: 'team',
+                title: '富文本编辑器',
+                hideInMenu: false,
+                access: ['student'],
+            }
+        },{
+            path: "/map",
+            name: 'map-page',
+            component: MyMap,
+            onEnter: onRouteEnter,
+            meta: {
+                icon: 'team',
+                title: '地图控件',
+                hideInMenu: false,
+                access: ['student'],
+            }
+        }],
     onEnter: onRouteEnter
-}, {                     //非跟路由的子路由不会再侧面菜单栏中显示哦
-    path: "/about",
-    name:'about-page',
-    component: About,
-    onEnter: onRouteEnter,
-     meta: {
-       icon:'team',   
-      title: '关于',
-      hideInMenu: false,
-      access: ['student'],
-    }
-}, {
+},{
     path: "/login",
-    name:'login-page',
+    name: 'login-page',
     component: Login,
     onEnter: onRouteEnter,
     meta: {
-      icon:'desktop',
-      title: '登陆',
-      hideInMenu: true,
+        icon: 'desktop',
+        title: '登陆',
+        hideInMenu: true,
     }
 },
 {
     path: "/error_page",
-     name:'error-page',
+    name: 'error-page',
     component: ErrorPage,
     meta: {
-         icon:'file',
-      title: '错误',
-      hideInMenu: true,
+        icon: 'file',
+        title: '错误',
+        hideInMenu: true,
     }
 }]
 
@@ -82,7 +95,7 @@ const canChangeRouter = (route, access, callback, replace) => {
     }
 }
 function onRouteEnter(nextState, replace, callback) {
-    const route = nextState.routes[nextState.routes.length-1].path?nextState.routes[nextState.routes.length-1]:nextState.routes[0]
+    const route = nextState.routes[nextState.routes.length - 1].path ? nextState.routes[nextState.routes.length - 1] : nextState.routes[0]
     const storeData = store.getState().userData
     const {access, hasGetInfo} = storeData
     let token = getToken()

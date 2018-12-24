@@ -45,7 +45,7 @@ class Main extends Component{
           </Header>
           <Content style={{ margin: '0 16px' }}>
             <RouterHistory></RouterHistory>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+            <div style={{ minHeight: 360 }}>
              {children}
             </div>
           </Content>

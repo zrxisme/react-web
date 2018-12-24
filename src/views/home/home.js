@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReactEcharts from 'echarts-for-react';
-import echarts from 'echarts';
 import { randOptions,pieOption,StringGraph } from './expand'
 import { Row, Col, Card } from 'antd';
 import InforCard  from './components/inforCard'
@@ -25,7 +24,7 @@ class Home extends Component {
                     {inforCardData.map((infor, i) => {
                         return (
                             <Col xs={12} md={8} lg={4} key={`infor-${i}`} style={{ height: '120px', paddingBottom: '10px' }}>
-                                <InforCard shadow={true} color={infor.color} icon={infor.icon}  count={infor.count} title={infor.title}>
+                                <InforCard color={infor.color} icon={infor.icon}  count={infor.count} title={infor.title}>
                                 </InforCard>
                             </Col>
                         )

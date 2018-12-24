@@ -10,6 +10,7 @@
     "react": "^16.7.0",
     "react-app-rewire-less": "^2.1.3",
     "react-app-rewired": "^1.6.2",
+    "react-bmap": "^1.0.91",
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
