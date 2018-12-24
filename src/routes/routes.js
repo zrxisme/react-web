@@ -8,6 +8,11 @@ import Home from '../views/home/home'
 import Person from '../views/personal'
 import MyMap from '../views/map'
 import MyExcel from '../views/excel'
+import AntComponent from '../views/antComponent'
+import Card from '../views/antComponent/Card'
+import MyCodeMirror from '../views/antComponent/code'
+import ReChar from '../views/antComponent/rechar'
+
 /**
  *  meta: {
       icon:'',  侧面菜单栏显示的图标
@@ -73,6 +78,52 @@ const routes = [{
                 hideInMenu: false,
                 access: ['student'],
             }
+        }, {
+            path: "/antComponent",
+            name: 'antComponent-page',
+            onEnter: onRouteEnter,
+            indexRoute: { component: Card },
+            meta: {
+                icon: 'team',
+                title: '组件列表',
+                hideInMenu: false,
+                access: ['student'],
+            },
+             childRoutes: [{
+                path: "/code",
+                name: 'code-page',
+                component: MyCodeMirror ,
+                onEnter: onRouteEnter,
+                meta: {
+                    icon: 'team',
+                    title: '代码编辑器',
+                    hideInMenu: false,
+                    access: ['student'],
+                }
+            },{
+                path: "/rechar",
+                name: 'rechar-page',
+                component: ReChar ,
+                onEnter: onRouteEnter,
+                meta: {
+                    icon: 'team',
+                    title: '可视化图表',
+                    hideInMenu: false,
+                    access: ['student'],
+                }
+            },
+            {
+                path: "/card",
+                name: 'card-page',
+                component: Card,
+                onEnter: onRouteEnter,
+                meta: {
+                    icon: 'team',
+                    title: '卡片组件',
+                    hideInMenu: false,
+                    access: ['student'],
+                }
+            }]
         }],
     onEnter: onRouteEnter
 }, {
