@@ -1,80 +1,233 @@
- .info_detail {
-    position: relative;
-    background: white;
-    padding: 20px;
-    margin-left: 20px;
-  }
-  
-  .info_detail .detail_item {
-    position: relative;
-    height: 60px;
-    line-height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-  }
-  
-  .info_detail .detail_item .label {
-    font-weight: bold;
-    flex: 0 0 120px;
-  }
-  
-  .info_detail .detail_item .value {
-    flex: auto;
-  }
-  
-  .user_container_wrapper {
-    position: relative;
-  }
-  
-  .avatat_wrapper {
-    position: relative;
-    padding: 25px 0;
-    background: white;
-    text-align: center;
-  }
-  
-  .user_avatar {
-    position: relative;
-    margin: 0 auto;
-    width: 80px;
-    height: 80px;
-    border: 50%;
-    display: block;
-    border-radius: 50%;
-  }
-  
-  .user_name {
-    position: relative;
-    margin-top: 8px;
-  }
-  
-  .change_avatar {
-    position: relative;
-    color: cadetblue;
-    cursor: pointer;
-  }
-  
-  .user_tip_container {
-    position: relative;
-    width: 100%;
-    margin-top: 20px;
-    background: white;
-    font-size: 16px;
-    padding: 18px 0
-  }
-  
-  .user_tip_container .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    height: 50px;
-    line-height: 60px;
-    cursor: pointer;
-  }
-
-   .user_tip_container .item:hover{
-     background: #eee;
-   }
+  .el-row {
+        margin-bottom: 20px;
+    }
+    
+    .el-row:last-child {
+        margin-bottom: 0;
+    }
+    
+    .tab-container {
+        position: relative;
+        width: 70%;
+        margin: 60px auto;
+    }
+    
+    .detail-container {
+        position: relative;
+        margin-bottom: 80px;
+    }
+    
+    .detail {
+        position: relative;
+        min-height: 450px;
+        left: 0;
+        -webkit-transition: all 0.3s ease;
+        z-index: 999;
+        overflow: auto;
+        transition: all 0.3s;
+    }
+    
+    .title-top {
+        position: relative;
+        margin: 15px 0 20px 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    .bg-img {
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 450px;
+    }
+    
+    .detail.open {
+        bottom: 0;
+    }
+    
+    .mask {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(7, 17, 27, 0.8);
+        z-index: 100;
+    }
+    
+    .close-copy:before {
+        font-family: "iconfont" !important;
+        font-size: 42px;
+        color: black;
+        font-style: normal;
+        content: "\e888";
+    }
+    
+    .detail-main .text {
+        font-size: 24px;
+        position: relative;
+        text-align: center;
+    }
+    
+    .hide-tag {
+        position: absolute;
+        right: 45px;
+    }
+    
+    .detail .detail-wrapper {
+        position: relative;
+        padding: 30px 320px;
+    }
+    
+    .detail .detail-wrapper .detail-main {
+        position: relative;
+        padding-bottom: 30px;
+    }
+    
+    .detail .detail-wrapper .detail-main .name {
+        display: block;
+        margin: 0 auto;
+        line-height: 16px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700px;
+    }
+    
+    .detail .detail-wrapper .detail-main .star-wrap {
+        text-align: center;
+        margin-top: 18px;
+        padding: 2px 0;
+    }
+    
+    .detail .detail-wrapper .detail-main .title {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .detail .detail-wrapper .detail-main .title2 {
+        position: relative;
+        font-size: 30px;
+        text-align: center;
+    }
+    
+    .detail .detail-wrapper .detail-main .title .text {
+        padding: 0 12px;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .detail-main .overview {
+        position: relative;
+        top: -20px;
+        padding-bottom: 10px;
+    }
+    
+    .detail-main .overview .title {
+        display: block;
+        margin-bottom: 20px;
+        line-height: 14px;
+        font-size: 34px;
+    }
+    
+    .detail-main .overview .desc {
+        padding-bottom: 6px;
+        position: relative;
+        font-size: 0;
+        text-align: center;
+        margin-top: 6px;
+    }
+    
+    .detail-main .overview .desc::after {
+        display: block;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        content: "";
+        border-top: 1px solid #eee;
+        transform-origin: 0 100%;
+        transform: scaleY(0.5);
+    }
+    
+    .detail-main .overview .desc .text {
+        display: inline-block;
+        margin-right: 12px;
+        line-height: 36px;
+        vertical-align: top;
+        font-size: 16px;
+    }
+    
+    .detail-main .overview .remark {
+        display: flex;
+        padding: 20px 0;
+    }
+    
+    .detail-main .overview .remark .block {
+        flex: auto;
+        text-align: center;
+    }
+    
+    .detail-main .overview .remark .block:last-child {
+        border: none;
+    }
+    
+    .detail-main .overview .remark .block .content {
+        line-height: 44px;
+    }
+    
+    .detail-main .overview .remark .block .content .stress {
+        font-size: 18px;
+        color: black;
+    }
+    
+    .detail-main .overview .remark .block span {
+        color: rgb(180, 180, 180);
+    }
+    
+    .detail-main .overview .favorites {
+        position: absolute;
+        width: 50px;
+        right: 11px;
+        top: 18px;
+        text-align: center;
+    }
+    
+    .detail-main .overview .favorites .icon-favorite {
+        display: block;
+        margin-bottom: 4px;
+        line-height: 24px;
+        font-size: 24px;
+        color: #d4d6d9;
+    }
+    
+    .detail-main .overview .favorites .actives {
+        color: rgb(240, 20, 20);
+    }
+    
+    .detail-main .overview .favorites .text {
+        line-height: 10px;
+        font-size: 10px;
+    }
+    
+    .detail-main .bulletin {
+        padding: 0 36px;
+        text-align: center;
+    }
+    
+    .detail-main .bulletin .content {
+        position: relative;
+        line-height: 26px;
+        font-size: 16px;
+    }
+    
+    .seller-avatar {
+        position: relative;
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid white;
+        margin: 10px 0;
+    }
