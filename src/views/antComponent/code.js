@@ -17,7 +17,7 @@ export default class MyCodeMirror extends Component {
         };
         return (
             <MonacoEditor
-                width="800"
+                width="900"
                 height="600"
                 language="javascript"
                 theme="vs-dark"

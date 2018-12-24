@@ -12,7 +12,7 @@ import AntComponent from '../views/antComponent'
 import Card from '../views/antComponent/Card'
 import MyCodeMirror from '../views/antComponent/code'
 import ReChar from '../views/antComponent/rechar'
-
+import MyMove from '../views/antComponent/move'
 /**
  *  meta: {
       icon:'',  侧面菜单栏显示的图标
@@ -97,6 +97,17 @@ const routes = [{
                 meta: {
                     icon: 'team',
                     title: '代码编辑器',
+                    hideInMenu: false,
+                    access: ['student'],
+                }
+            },{
+                path: "/move",
+                name: 'move-page',
+                component: MyMove ,
+                onEnter: onRouteEnter,
+                meta: {
+                    icon: 'team',
+                    title: 'react动画',
                     hideInMenu: false,
                     access: ['student'],
                 }
