@@ -20,7 +20,7 @@ class SideMenu extends Component {
             }
         })[0]  //过滤路由，只在菜单栏显示跟路由的菜单
 
-        if (routerShow(menuList, access)) {     
+        if (routerShow(menuList, access)) {
             if (menuList.childRoutes && menuList.childRoutes.length > 0) {
                 menuList.childRoutes.forEach(children => {
                     if (children.path && routerShow(children, access)) {
@@ -67,7 +67,7 @@ class SideMenu extends Component {
                                         return this.getMenuList(itemChildren)
                                     } else {
                                         return (
-                                            <Menu.Item key={`menu${itemChildren.path}`}><Icon type={item.meta.icon || 'team'} />{itemChildren.meta.title || '无标题'}</Menu.Item>
+                                            <Menu.Item key={`menu${itemChildren.path}`}><Icon type={itemChildren.meta.icon || 'team'} />{itemChildren.meta.title || '无标题'}</Menu.Item>
                                         )
                                     }
                                 } else {
@@ -90,7 +90,17 @@ class SideMenu extends Component {
         this.setState({
             current: e.key,
         });
-        const router = e.key.substr(4)
+        let router = ''
+        e.keyPath.reverse()
+        if (e.keyPath.length > 1) {
+            router = e.keyPath.join("/")
+        } else {
+            router = e.keyPath[0]
+        }
+        router = router.replace(/menu/g, '')
+         if(router.indexOf("/")!=0){
+           router = "/" + router
+         }
         this.props.changeRouter(router)
     }//获取菜单点击事件
 

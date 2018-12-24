@@ -35,7 +35,7 @@ const routes = [{
     indexRoute: { component: Home },
     childRoutes: [
         {
-            path: "/person",
+            path: "person",
             name: 'person-page',
             component: Person,
             onEnter: onRouteEnter,
@@ -46,18 +46,18 @@ const routes = [{
                 access: ['student'],
             }
         }, {
-            path: "/editor",
+            path: "editor",
             name: 'editor-page',
             component: MyEditor,
             onEnter: onRouteEnter,
             meta: {
-                icon: 'team',
+                icon: 'read',
                 title: '富文本编辑器',
                 hideInMenu: false,
                 access: ['student'],
             }
         }, {
-            path: "/excel",
+            path: "excel",
             name: 'excel-page',
             component: MyExcel,
             onEnter: onRouteEnter,
@@ -68,68 +68,68 @@ const routes = [{
                 access: ['student'],
             }
         }, {
-            path: "/map",
+            path: "map",
             name: 'map-page',
             component: MyMap,
             onEnter: onRouteEnter,
             meta: {
-                icon: 'team',
+                icon: 'global',
                 title: '地图控件',
                 hideInMenu: false,
                 access: ['student'],
             }
         }, {
-            path: "/antComponent",
+            path: "antComponent",
             name: 'antComponent-page',
             onEnter: onRouteEnter,
             indexRoute: { component: Card },
             meta: {
-                icon: 'team',
+                icon: 'switcher',
                 title: '组件列表',
                 hideInMenu: false,
                 access: ['student'],
             },
              childRoutes: [{
-                path: "/code",
+                path: "code",
                 name: 'code-page',
                 component: MyCodeMirror ,
                 onEnter: onRouteEnter,
                 meta: {
-                    icon: 'team',
+                    icon: 'form',
                     title: '代码编辑器',
                     hideInMenu: false,
                     access: ['student'],
                 }
             },{
-                path: "/move",
+                path: "move",
                 name: 'move-page',
                 component: MyMove ,
                 onEnter: onRouteEnter,
                 meta: {
-                    icon: 'team',
+                    icon: 'rocket',
                     title: 'react动画',
                     hideInMenu: false,
                     access: ['student'],
                 }
             },{
-                path: "/rechar",
+                path: "rechar",
                 name: 'rechar-page',
                 component: ReChar ,
                 onEnter: onRouteEnter,
                 meta: {
-                    icon: 'team',
+                    icon: 'bar-chart',
                     title: '可视化图表',
                     hideInMenu: false,
                     access: ['student'],
                 }
             },
             {
-                path: "/card",
+                path: "card",
                 name: 'card-page',
                 component: Card,
                 onEnter: onRouteEnter,
                 meta: {
-                    icon: 'team',
+                    icon: 'layout',
                     title: '卡片组件',
                     hideInMenu: false,
                     access: ['student'],

@@ -11,7 +11,7 @@ export default class MyCard extends Component {
                 {
                     arr.map((item, index) => {
                         return (
-                            <Col span={4}>
+                            <Col span={4} key={'key'+index}>
                             <Card
                                 hoverable
                                 style={{ width: 240 }}
