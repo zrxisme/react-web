@@ -1,6 +1,9 @@
 
 >笔者最近使用react全家桶开发项目的过程中，发现后台网站之间功能内容差异较小，样式布局也大同小异，为提高网站开发的效率，同时也为了解放前端的生产力，所以打造了react-web这个react后台网站开发模板
 
+## 动图展示
+![Image text](https://media.kaolaplay.com/aibb_show.gif)
+
 * 功能简介
 * 路由跳转
 * 状态管理
@@ -188,8 +191,6 @@ onRouteEnter是路由的生命周期函数，主要用于对用户的身份认�
 * cnpm install
 * npm star
 
-## gif图展示
-![Image text](https://media.kaolaplay.com/aibb_show.gif)
 
 
 ### 如果遇到问题请联系我,欢迎pr哦，让我们一起加油！
