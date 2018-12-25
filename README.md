@@ -185,9 +185,9 @@ onRouteEnter是路由的生命周期函数，主要用于对用户的身份认�
 
 
 ## 下载使用
-* 1、git clone 地址
-* 2、cnpm install
-* 3、npm star
+* git clone 地址
+* cnpm install
+* npm star
 
 ## gif图展示
 ![Image text](https://media.kaolaplay.com/aibb_show.gif)
