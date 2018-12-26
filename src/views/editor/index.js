@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './index.less'
 import {
-    Form, Select, Radio,
+    Form, Radio,
     Slider, Button, Upload, Icon, Rate,
     Row, Col
 } from 'antd';

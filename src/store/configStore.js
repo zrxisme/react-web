@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware,compose } from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
-const middleware = [thunk,createLogger]
+import promiseMiddleware from 'redux-promise'
+const middleware = [promiseMiddleware,thunk,createLogger]
 const configStore = compose(
     applyMiddleware(...middleware)
 )(createStore)

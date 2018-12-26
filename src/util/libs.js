@@ -72,7 +72,7 @@ export function getRouteHistory() {
 export function clearMessage() {
     Cookies.set(ROUTER_HISTORY, {}, { expires: 0 })
     Cookies.set(LOGIN_TOKEN, '', { expires:0 })
-}//页面登出,清除token
+}//页面登出,清除token和历史记录
 
 export function getToken() {
     const token = Cookies.get(LOGIN_TOKEN)

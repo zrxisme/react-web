@@ -1,40 +1,49 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './login.less'
-import { login} from '../../actions'
-import { Card, Form, Icon, Input, Button } from 'antd';
+import { login } from '../../actions'
+import { Card, Form, Icon, Input, Button,message } from 'antd';
 import PropTypes from "prop-types";
 const FormItem = Form.Item;
 class Login extends Component {
     constructor() {
         super(...arguments)
         this.state = {
-            info:{
-            username: "",
-            password: "",
-            token: ""
-        }
+            info: {
+                username: "",
+                password: "",
+                token: ""
+            }
         }
     }
-     static contextTypes = {
-            router: PropTypes.object.isRequired,
-        }
+    static contextTypes = {
+        router: PropTypes.object.isRequired
+    }
+    componentDidMount() {
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                const {username,password} = values
-                if(username==='admin'&&password==='admin'){
-                      let content = this.props.loginClick({...values,token:'user_token'})
-                      console.log(content,999)
-                       // this.context.router.push("/")
+                const {username, password} = values
+                if (/*username === 'admin' && password === 'admin'*/1) {
+                    this.props.loginClick({ ...values, token: 'user_token' })
+                        .then((content) => {
+                            console.log(content, 698888)
+                            if (content.payload.msg === 'success') {
+                                this.context.router.push("/")
+                            }else{
+                                message.error('用户名或密码不正确！')
+                            }
+
+                        })
+
                 }
-               
             }
         });
     }
     render() {
-       const { getFieldDecorator } = this.props.form; 
+        const { getFieldDecorator } = this.props.form;
         return (
             <div className="login">
                 <div className="login-con">
@@ -83,4 +92,4 @@ const getLoginState = state => {
         state: state
     }
 }
-export default  Form.create()(connect(getLoginState, getLoginAction)(Login))
+export default Form.create()(connect(getLoginState, getLoginAction)(Login))
