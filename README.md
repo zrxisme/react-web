@@ -180,7 +180,7 @@ onRouteEnter是路由的生命周期函数，主要用于对用户的身份认�
 ![图](https://user-gold-cdn.xitu.io/2018/12/25/167e3b2bb1ad1aaa?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 
-以上内容就是对aibb这个react后台模板的简单介绍，比较感兴趣的开发这可以上github[链接](https://github.com/zrxisme/react-web)上clone到本地进行开发，如果可以pr那就再好不过了，如果在开发过程中遇到问题，可以给我提issue，我一定会在第一时间解决。
+以上内容就是对react-web这个react后台模板的简单介绍，比较感兴趣的开发这可以上github[链接](https://github.com/zrxisme/react-web)上clone到本地进行开发，如果可以pr那就再好不过了，如果在开发过程中遇到问题，可以给我提issue，我一定会在第一时间解决。
 
 `感觉您的耐性读完，谢谢！`
 
